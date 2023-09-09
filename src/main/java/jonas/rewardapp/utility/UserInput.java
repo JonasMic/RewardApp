@@ -4,9 +4,7 @@ import jonas.rewardapp.entity.Customer;
 import jonas.rewardapp.exception.InvalidUserInputException;
 import jonas.rewardapp.service.RewardService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInput extends Customer {
     private String hasAccount;
@@ -96,7 +94,8 @@ public class UserInput extends Customer {
 
     public void validateInput() throws InvalidUserInputException {
         if ("yes".equalsIgnoreCase(isHasAccount())) {
-            System.out.println("welcome");
+            System.out.println("welcome to Rewards App.Please login.");
+            login();
         } else if ("no".equalsIgnoreCase(isHasAccount())) {
             try {
                 System.out.println("Let's start registration");
@@ -270,7 +269,7 @@ public class UserInput extends Customer {
     }
 
     public void login() {
-        Customer customer = getCurrentCustomer();
+        Optional<Customer> customer = Optional.ofNullable(getCurrentCustomer());
         Scanner scan = new Scanner(System.in);
         System.out.println("Please Login ");
 
@@ -280,7 +279,7 @@ public class UserInput extends Customer {
         String password = scan.nextLine();
 
         try {
-            if (customer.getEmail().equals(email) && customer.getPassword().equals(password)) {
+            if (customer.get().getEmail().equals(email) && customer.get().getPassword().equals(password)) {
                 System.out.println("Welcome to the Rewards App .You are successfully logged in");
                 RewardService service= new RewardService();
                service.surchargeRewards();
@@ -290,37 +289,40 @@ public class UserInput extends Customer {
                 throw new InvalidUserInputException(" Invalid  password or email input!");
             }
 
-        } catch (InvalidUserInputException ex) {
+        } catch (InvalidUserInputException | NoSuchElementException ne) {
             try {
                 System.out.println("Enter your email again : ");
                 email = scan.nextLine();
                 System.out.println("Enter your password again : ");
                 password = scan.nextLine();
-                if (customer.getEmail().equals(email) && customer.getPassword().equals(password)) {
+                if (customer.get().getEmail().equals(email) && customer.get().getPassword().equals(password)) {
                     System.out.println("Welcome to the Rewards App .You are successfully logged in");
-//                    surchargeRewards();
-//                    claimRewards();
-
+                    RewardService service= new RewardService();
+                    service.surchargeRewards();
+                    // retrieve email from the record by email
+                    service.claimRewards(currentCustomer);
 
                 } else {
                     throw new InvalidUserInputException(" Invalid  password or email input!");
                 }
 
-            } catch (InvalidUserInputException e) {
+            } catch (InvalidUserInputException | NoSuchElementException e) {
                 try {
                     System.out.println("Enter your email again : ");
                     email = scan.nextLine();
                     System.out.println("Enter your password  again: ");
                     password = scan.nextLine();
-                    if (customer.getEmail().equals(email) && customer.getPassword().equals(password)) {
+                    if (customer.get().getEmail().equals(email) && customer.get().getPassword().equals(password)) {
                         System.out.println("Welcome to the Rewards App .You are successfully logged in");
-//                        surchargeRewards();
-//                        claimRewards();
+                        RewardService service= new RewardService();
+                        service.surchargeRewards();
+                        // retrieve email from the record by email
+                        service.claimRewards(currentCustomer);
 
                     } else {
-                        throw new InvalidUserInputException(" Sorry Invalid user account,you tried three times.Please try again later!");
+                        throw new NoSuchElementException(" Sorry Invalid user account,you tried three times.Please try again later!");
                     }
-                } catch (InvalidUserInputException exc) {
+                } catch (InvalidUserInputException | NoSuchElementException exc) {
                     System.out.println(exc.getMessage());
                     System.exit(0);
                 }

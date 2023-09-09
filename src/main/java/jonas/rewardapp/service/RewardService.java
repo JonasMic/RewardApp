@@ -115,6 +115,7 @@ public class RewardService implements Runnable, UserInputInterface {
 
                         System.out.println("Wow congratulation you redemption for " + availableRedeem.get(input1 - 1).getName() + " is successful.");
                         customer.setRewardPoints(customer.getRewardPoints() - availableRedeem.get(input1 - 1).getRewardPointValue());
+                        System.out.println("you have remaining reward point of "+customer.getRewardPoints());
                     } else {
                         System.out.println("Sorry your reward points,  : " + rewardPoints + "are not enough to redeem " + availableRedeem.get(input1 - 1).getName() + " which require "
                                 + availableRedeem.get(input1 - 1).getRewardPointValue() + ".Try to redeem other reward");
@@ -123,6 +124,8 @@ public class RewardService implements Runnable, UserInputInterface {
                     if (rewardPoints >= availableRedeem.get(input1).getRewardPointValue()) {
                         System.out.println("Wow congratulation you redemption for " + availableRedeem.get(input1 - 1).getName() + " is successful.");
                         customer.setRewardPoints(customer.getRewardPoints() - availableRedeem.get(input1 - 1).getRewardPointValue());
+                        System.out.println("you have remaining reward point of "+customer.getRewardPoints());
+
                     } else {
                         System.out.println("Sorry your reward points,  : " + rewardPoints + "are not enough to redeem " + availableRedeem.get(input1 - 1).getName() + " which require "
                                 + availableRedeem.get(input1 - 1).getRewardPointValue() + ". Try to redeem other reward");
@@ -132,6 +135,8 @@ public class RewardService implements Runnable, UserInputInterface {
                     if (rewardPoints >= availableRedeem.get(input1).getRewardPointValue()) {
                         System.out.println("Wow congratulation you redemption for " + availableRedeem.get(input1 - 1).getName() + " is successful.");
                         customer.setRewardPoints(customer.getRewardPoints() - availableRedeem.get(input1 - 1).getRewardPointValue());
+                        System.out.println("you have remaining reward point of "+customer.getRewardPoints());
+
                     } else {
                         System.out.println("Sorry your reward points,  : " + rewardPoints + "are not enough to redeem " + availableRedeem.get(input1 - 1).getName() + " which require "
                                 + availableRedeem.get(input1 - 1).getRewardPointValue() + ". Try to redeem other reward");
@@ -141,6 +146,8 @@ public class RewardService implements Runnable, UserInputInterface {
                     if (rewardPoints >= availableRedeem.get(input1 - 1).getRewardPointValue()) {
                         System.out.println("Wow congratulation you redemption for " + availableRedeem.get(input1 - 1).getName() + " is successful.");
                         customer.setRewardPoints(customer.getRewardPoints() - availableRedeem.get(input1 - 1).getRewardPointValue());
+                        System.out.println("you have remaining reward point of "+customer.getRewardPoints());
+
                     } else {
                         System.out.println("Sorry your reward points,  : " + rewardPoints + "are not enough to redeem " + availableRedeem.get(input1 - 1).getName() + " which require "
                                 + availableRedeem.get(input1 - 1).getRewardPointValue() + ". Try to redeem other reward");
