@@ -12,12 +12,7 @@ public class RewardApp {
         userInput.register();
         userInput.login();
 
-        RewardService service = new RewardService();
-//        service.getCurrentUser();
-//        service.getCustomerList();
-//        service.surchargeRewards();
-//        service.claimRewards();
-
+        
 
 
     }
